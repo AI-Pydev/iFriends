@@ -1,0 +1,58 @@
+{% extends "iFriends_base.html" %}
+
+{% block title %}Details{% endblock %}
+{% block content %}
+<table width=100%>
+<tr bgcolor="aabbcc"><td colspan="3">
+<font size="5" color="white">Personal Information</font>
+</td></tr>
+<tr valign="top"><td width=30% bgcolor="aaaaaa"><font color="white" size="5">
+    <li>Name: {{p.name}}</li>
+    <li>Birthday: {{ p.birthday|date:"jS F Y" }}</li>
+    <li>Gender:
+        {% ifequal p.gender "M" %}            Bloke
+        {% else %}
+            Sheila
+        {% endifequal %}
+    </li>
+    <li>Desc: {{ p.desc }} </li>
+</font></td>
+<td width=40% bgcolor="aa99aa"><font color="white" size="4">
+    {% include "quote.html" %}
+</font></td>
+<td width=30%>
+    <h3>Contact Info</h3>
+    <li>Email: {{ p.email }}</li>
+    <li>Website: {{ p.favoriteURL }}</li>
+</td></tr>
+<tr>
+<td width="30%" bgcolor="556677" valign="top">
+    <font color="white" size="4">
+    {% with p.friends.all as fl %}
+    <h3>
+        {{ fl|length|yesno:"iFriend,No Friend"}}{{fl|length|pluralize}}
+    </h3>
+    {% for f in fl %}
+    <li>{{ f.name }}</li>
+    {% endfor %}
+    {% endwith %}
+    </font>
+</td>
+<td width="70%" bgcolor="555555" colspan="2" valign="top">
+    <font color="white" size="4">
+    {% with p.blogs.all as bl %}
+    <h3>
+        {{ bl|length|yesno:"Blog,No Blog"}}
+        Entr{{ bl|length|pluralize:"y,ies"}}
+    </h3>
+    {% for b in bl %}
+    <li>{{ b.title }} -
+        <font size="2"> {{ b.date|date:"M d, Y g:ma" }}</font>
+    </li>
+    {% endfor %}
+    {% endwith %}
+    </font>
+</td>
+</tr>
+</table>
+{% endblock %}

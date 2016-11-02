@@ -1,0 +1,9 @@
+{% for q in object_list %}
+   <li>
+     {{ q.text }}
+     <font size="3">-{{ q.by }}
+       <a href="/generic/quote_update/{{ q.id }}/">[Update]</a>
+       <a href="/generic/quote_delete/{{ q.id }}/">[Delete]</a>
+     </font>
+   </li>
+{% endfor %}

@@ -1,0 +1,13 @@
+<table width="100%">
+<tr bgcolor="aa22aa" width="100%"><td align="center">
+<font size="4">Quote of the Day</font>
+</td></tr>
+<tr><td align="center">
+{% with quotes|random as quote %}
+<font size="5">{{ quote.text }}</font>
+</td></tr>
+<tr><td align="center">
+<font size="2">- {{quote.by }}</font>
+{% endwith %}
+</td></tr>
+</table>
